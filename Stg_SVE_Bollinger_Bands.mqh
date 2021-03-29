@@ -17,7 +17,7 @@ INPUT int SVE_Bollinger_Bands_PriceStopMethod = 0;         // Price stop method
 INPUT float SVE_Bollinger_Bands_PriceStopLevel = 2;        // Price stop level
 INPUT int SVE_Bollinger_Bands_TickFilterMethod = 1;        // Tick filter method
 INPUT float SVE_Bollinger_Bands_MaxSpread = 4.0;           // Max spread to trade (in pips)
-INPUT int SVE_Bollinger_Bands_Shift = 0;                   // Strategy Shift (relative to the current bar, 0 - default)
+INPUT short SVE_Bollinger_Bands_Shift = 0;                 // Strategy Shift (relative to the current bar, 0 - default)
 INPUT int SVE_Bollinger_Bands_OrderCloseTime = -20;        // Order close time in mins (>0) or bars (<0)
 
 // Structs.
