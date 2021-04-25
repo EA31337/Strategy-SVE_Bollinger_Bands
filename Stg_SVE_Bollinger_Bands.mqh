@@ -56,7 +56,7 @@ struct Stg_SVE_Bollinger_Bands_Params {
 
 class Stg_SVE_Bollinger_Bands : public Strategy {
  public:
-  Stg_SVE_Bollinger_Bands(StgParams &_params, string _name) : Strategy(_params, _name) {}
+  Stg_SVE_Bollinger_Bands(StgParams &_params, Trade *_trade = NULL, string _name = "") : Strategy(_params, _trade, _name) {}
 
   static Stg_SVE_Bollinger_Bands *Init(ENUM_TIMEFRAMES _tf = NULL, long _magic_no = NULL,
                                        ENUM_LOG_LEVEL _log_level = V_INFO) {
@@ -72,12 +72,9 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
 #endif
     // Initialize indicator.
     _stg_params.SetIndicator(new Indi_SVE_Bollinger_Bands(_indi_params));
-    // Initialize strategy parameters.
-    _stg_params.GetLog().SetLevel(_log_level);
-    _stg_params.SetMagicNo(_magic_no);
-    _stg_params.SetTf(_tf, _Symbol);
-    // Initialize strategy instance.
-    Strategy *_strat = new Stg_SVE_Bollinger_Bands(_stg_params, "SVE BB");
+    // Initialize Strategy instance.
+    TradeParams _tparams(_magic_no, _log_level);
+    Strategy *_strat = new Stg_SVE_Bollinger_Bands(_stg_params, new Trade(new Chart(_tf, _Symbol)), "SVE BB");
     return _strat;
   }
 
