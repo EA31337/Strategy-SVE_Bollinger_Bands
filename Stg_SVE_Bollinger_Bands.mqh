@@ -40,7 +40,7 @@ struct Stg_SVE_Bollinger_Bands_Params {
 
   // Struct constructors.
   Stg_SVE_Bollinger_Bands_Params(Indi_SVE_Bollinger_Bands_Params &_iparams, StgParams &_sparams)
-      : iparams(indi_svebbands_defaults, _iparams.tf), sparams(stg_svebbands_defaults) {
+      : iparams(indi_svebbands_defaults, _iparams.tf.GetTf()), sparams(stg_svebbands_defaults) {
     iparams = _iparams;
     sparams = _sparams;
   }
