@@ -38,7 +38,9 @@ input bool Info_On_Chart = true;          // Display info on chart.
 // Load external resources.
 #ifdef __resource__
 #ifdef __MQL5__
-#resource "Indicators/Indi_TMA_True.ex5"
+#import "::Indicators/Indi_SVE_Bollinger_Bands.ex5"
+#import
+#resource "Indicators/Indi_SVE_Bollinger_Bands.ex5"
 #endif
 #endif
 
