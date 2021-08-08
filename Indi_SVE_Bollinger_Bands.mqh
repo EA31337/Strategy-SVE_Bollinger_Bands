@@ -20,8 +20,7 @@
  */
 
 // User input params.
-INPUT string __SVE_Bollinger_Bands_Indi_Params__ =
-    "-- SVE Bollinger Bands indicator params --";           // >>> SVE Bollinger Bands indicator <<<
+INPUT_GROUP("SVE Bollinger Bands indicator params");
 INPUT int Indi_SVE_Bollinger_Band_TEMAPeriod = 8;           // TEMA Period
 INPUT int Indi_SVE_Bollinger_Band_SvePeriod = 18;           // SVE Period
 INPUT double Indi_SVE_Bollinger_Band_BBUpDeviations = 1.6;  // BB Up Deviation

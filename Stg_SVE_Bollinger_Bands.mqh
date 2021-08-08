@@ -4,8 +4,7 @@
  */
 
 // User input params.
-INPUT string __SVE_Bollinger_Bands_Strategy_Params__ =
-    "-- SVE Bollinger Bands strategy params --";            // >>> SVE Bollinger Bands strategy <<<
+INPUT_GROUP("SVE Bollinger Bands strategy: strategy params");
 INPUT float SVE_Bollinger_Bands_LotSize = 0;                // Lot size
 INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 2;         // Signal open method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filter method
@@ -33,7 +32,7 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
                   ::SVE_Bollinger_Bands_OrderCloseTime) {}
 } stg_svebbands_defaults;
 
-// Defines struct to store indicator and strategy params.
+// Defines struct to store indicator and strategy: strategy params.
 struct Stg_SVE_Bollinger_Bands_Params {
   Indi_SVE_Bollinger_Bands_Params iparams;
   StgParams sparams;
