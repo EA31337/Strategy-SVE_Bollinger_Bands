@@ -5,20 +5,20 @@
 
 // User input params.
 INPUT string __SVE_Bollinger_Bands_Strategy_Params__ =
-    "-- SVE Bollinger Bands strategy params --";           // >>> SVE Bollinger Bands strategy <<<
-INPUT float SVE_Bollinger_Bands_LotSize = 0;               // Lot size
-INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 2;        // Signal open method
+    "-- SVE Bollinger Bands strategy params --";            // >>> SVE Bollinger Bands strategy <<<
+INPUT float SVE_Bollinger_Bands_LotSize = 0;                // Lot size
+INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 2;         // Signal open method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filter method
-INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;    // Signal open level
-INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;   // Signal open boost method
-INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 2;       // Signal close method
-INPUT float SVE_Bollinger_Bands_SignalCloseLevel = 0.0f;   // Signal close level
-INPUT int SVE_Bollinger_Bands_PriceStopMethod = 1;         // Price stop method
-INPUT float SVE_Bollinger_Bands_PriceStopLevel = 2;        // Price stop level
-INPUT int SVE_Bollinger_Bands_TickFilterMethod = 1;        // Tick filter method
-INPUT float SVE_Bollinger_Bands_MaxSpread = 4.0;           // Max spread to trade (in pips)
-INPUT short SVE_Bollinger_Bands_Shift = 0;                 // Strategy Shift (relative to the current bar, 0 - default)
-INPUT int SVE_Bollinger_Bands_OrderCloseTime = -20;        // Order close time in mins (>0) or bars (<0)
+INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;     // Signal open level
+INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;    // Signal open boost method
+INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 2;        // Signal close method
+INPUT float SVE_Bollinger_Bands_SignalCloseLevel = 0.0f;    // Signal close level
+INPUT int SVE_Bollinger_Bands_PriceStopMethod = 1;          // Price stop method
+INPUT float SVE_Bollinger_Bands_PriceStopLevel = 2;         // Price stop level
+INPUT int SVE_Bollinger_Bands_TickFilterMethod = 1;         // Tick filter method
+INPUT float SVE_Bollinger_Bands_MaxSpread = 4.0;            // Max spread to trade (in pips)
+INPUT short SVE_Bollinger_Bands_Shift = 0;                  // Strategy Shift (relative to the current bar, 0 - default)
+INPUT int SVE_Bollinger_Bands_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
 
 // Structs.
 
@@ -85,8 +85,7 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
    */
   bool SignalOpen(ENUM_ORDER_TYPE _cmd, int _method = 0, float _level = 0.0f, int _shift = 0) {
     Indicator *_indi = GetIndicator();
-    bool _is_valid = _indi[CURR].IsValid();
-    bool _result = _is_valid;
+    bool _result = _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID);
     if (!_result) {
       // Returns false when indicator data is not valid.
       return false;
