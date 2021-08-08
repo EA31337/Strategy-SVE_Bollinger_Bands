@@ -11,6 +11,7 @@ INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filte
 INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 2;        // Signal close method
+INPUT int SVE_Bollinger_Bands_SignalCloseFilter = 0;        // Signal close filter (-127-127)
 INPUT float SVE_Bollinger_Bands_SignalCloseLevel = 0.0f;    // Signal close level
 INPUT int SVE_Bollinger_Bands_PriceStopMethod = 1;          // Price stop method
 INPUT float SVE_Bollinger_Bands_PriceStopLevel = 2;         // Price stop level
@@ -26,10 +27,10 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
   Stg_SVE_Bollinger_Bands_Params_Defaults()
       : StgParams(::SVE_Bollinger_Bands_SignalOpenMethod, ::SVE_Bollinger_Bands_SignalOpenFilterMethod,
                   ::SVE_Bollinger_Bands_SignalOpenLevel, ::SVE_Bollinger_Bands_SignalOpenBoostMethod,
-                  ::SVE_Bollinger_Bands_SignalCloseMethod, ::SVE_Bollinger_Bands_SignalCloseLevel,
-                  ::SVE_Bollinger_Bands_PriceStopMethod, ::SVE_Bollinger_Bands_PriceStopLevel,
-                  ::SVE_Bollinger_Bands_TickFilterMethod, ::SVE_Bollinger_Bands_MaxSpread, ::SVE_Bollinger_Bands_Shift,
-                  ::SVE_Bollinger_Bands_OrderCloseTime) {}
+                  ::SVE_Bollinger_Bands_SignalCloseMethod, ::SVE_Bollinger_Bands_SignalCloseFilter,
+                  ::SVE_Bollinger_Bands_SignalCloseLevel, ::SVE_Bollinger_Bands_PriceStopMethod,
+                  ::SVE_Bollinger_Bands_PriceStopLevel, ::SVE_Bollinger_Bands_TickFilterMethod,
+                  ::SVE_Bollinger_Bands_MaxSpread, ::SVE_Bollinger_Bands_Shift, ::SVE_Bollinger_Bands_OrderCloseTime) {}
 } stg_svebbands_defaults;
 
 // Defines struct to store indicator and strategy: strategy params.
