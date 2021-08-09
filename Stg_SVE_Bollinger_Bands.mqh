@@ -8,6 +8,7 @@ INPUT_GROUP("SVE Bollinger Bands strategy: strategy params");
 INPUT float SVE_Bollinger_Bands_LotSize = 0;                // Lot size
 INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 2;         // Signal open method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filter method
+INPUT int SVE_Bollinger_Bands_SignalOpenFilterTime = 6;     // Signal open filter time
 INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 2;        // Signal close method
@@ -36,6 +37,7 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
     Set(STRAT_PARAM_OCL, SVE_Bollinger_Bands_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, SVE_Bollinger_Bands_OrderCloseProfit);
     Set(STRAT_PARAM_OCT, SVE_Bollinger_Bands_OrderCloseTime);
+    Set(STRAT_PARAM_SOFT, SVE_Bollinger_Bands_SignalOpenFilterTime);
   }
 } stg_svebbands_defaults;
 
