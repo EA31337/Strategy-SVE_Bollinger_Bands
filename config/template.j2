@@ -19,7 +19,7 @@ struct Stg_SVE_Bollinger_Bands_Params_{{ Timeframe }} : StgParams {
   Stg_SVE_Bollinger_Bands_Params_{{ Timeframe }}() : StgParams(stg_svebbands_defaults) {
     lot_size = {{ SVE_Bollinger_Bands_LotSize | default(0) }};
     signal_open_method = {{ SVE_Bollinger_Bands_SignalOpenMethod | default(0) }};
-    signal_open_filter = {{ SVE_Bollinger_Bands_SignalOpenFilterMethod | default(1) }};
+    signal_open_filter_method = {{ SVE_Bollinger_Bands_SignalOpenFilterMethod | default(1) }};
     signal_open_level = (float){{ SVE_Bollinger_Bands_SignalOpenLevel | default(0) }};
     signal_open_boost = {{ SVE_Bollinger_Bands_SignalOpenBoostMethod | default(0) }};
     signal_close_method = {{ SVE_Bollinger_Bands_SignalCloseMethod | default(0) }};
