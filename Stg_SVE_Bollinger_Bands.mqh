@@ -6,22 +6,22 @@
 // User input params.
 INPUT_GROUP("SVE Bollinger Bands strategy: strategy params");
 INPUT float SVE_Bollinger_Bands_LotSize = 0;                // Lot size
-INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 2;         // Signal open method
+INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 0;         // Signal open method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filter method
-INPUT int SVE_Bollinger_Bands_SignalOpenFilterTime = 6;     // Signal open filter time
+INPUT int SVE_Bollinger_Bands_SignalOpenFilterTime = 8;     // Signal open filter time
 INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;    // Signal open boost method
-INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 2;        // Signal close method
-INPUT int SVE_Bollinger_Bands_SignalCloseFilter = 0;        // Signal close filter (-127-127)
+INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 0;        // Signal close method
+INPUT int SVE_Bollinger_Bands_SignalCloseFilter = 32;       // Signal close filter (-127-127)
 INPUT float SVE_Bollinger_Bands_SignalCloseLevel = 0.0f;    // Signal close level
-INPUT int SVE_Bollinger_Bands_PriceStopMethod = 1;          // Price stop method
+INPUT int SVE_Bollinger_Bands_PriceStopMethod = 1;          // Price stop method (0-127)
 INPUT float SVE_Bollinger_Bands_PriceStopLevel = 2;         // Price stop level
 INPUT int SVE_Bollinger_Bands_TickFilterMethod = 1;         // Tick filter method
 INPUT float SVE_Bollinger_Bands_MaxSpread = 4.0;            // Max spread to trade (in pips)
 INPUT short SVE_Bollinger_Bands_Shift = 0;                  // Strategy Shift (relative to the current bar, 0 - default)
 INPUT float SVE_Bollinger_Bands_OrderCloseLoss = 0;         // Order close loss
 INPUT float SVE_Bollinger_Bands_OrderCloseProfit = 0;       // Order close profit
-INPUT int SVE_Bollinger_Bands_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
+INPUT int SVE_Bollinger_Bands_OrderCloseTime = -30;         // Order close time in mins (>0) or bars (<0)
 
 // Structs.
 
