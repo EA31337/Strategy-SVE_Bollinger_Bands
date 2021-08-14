@@ -102,23 +102,14 @@ int start() {
   limit = MathMin(Bars - counted_bars, Bars - 1);
   if (ArrayRange(tBuffer, 0) != Bars) ArrayResize(tBuffer, Bars, Bars - Bars % 4096 + 4096);
 
-  //
-  //
-  //
-  //
-  //
+  // We don't want to process more that 1000 historic bars.
+  limit = fmin(limit, 1000);
 
   for (i = limit, r = Bars - i - 1; i >= 0; i--, r++) {
     if (i == (Bars - 1)) {
       tBuffer[r][__haOpen] = averagePrice(i);
       continue;
     }
-
-    //
-    //
-    //
-    //
-    //
 
     tBuffer[r][__haOpen] = (averagePrice(i) + tBuffer[r - 1][__haOpen]) / 2.0;
     double haClose = (averagePrice(i) + tBuffer[r][__haOpen] + MathMax(High[i], tBuffer[r][__haOpen]) +
@@ -130,12 +121,6 @@ int start() {
     double zima = tema1 + diff;
     tmaZima[i] = iTema(zima, i, 6);
   }
-
-  //
-  //
-  //
-  //
-  //
 
   for (i = limit; i >= 0; i--) {
     double sdev = iDeviation(tmaZima, SvePeriod, i);
@@ -153,11 +138,6 @@ int start() {
     bbUpper[i] = 50.0 + sdev * BBUpDeviations;
     bbLower[i] = 50.0 - sdev * BBDnDeviations;
   }
-  //
-  //
-  //
-  //
-  //
 
   return (0);
 }
@@ -165,12 +145,6 @@ int start() {
 //+------------------------------------------------------------------+
 //|                                                                  |
 //+------------------------------------------------------------------+
-//
-//
-//
-//
-//
-
 double averagePrice(int i) {
   if (Open[i] != 0)
     return ((Open[i] + High[i] + Low[i] + Close[i]) / 4.0);
@@ -178,29 +152,18 @@ double averagePrice(int i) {
     return ((High[i] + Low[i] + Close[i]) / 3.0);
 }
 
-//
-//
-//
-//
-//
-
 double iDeviation(double& array[], int period, int pos) {
   double dMA = iSma(array, period, pos);
   double dSum = 0;
   for (int i = 0; i < period && pos < ArrayRange(array, 0); i++, pos++) dSum += (array[pos] - dMA) * (array[pos] - dMA);
   return (MathSqrt(dSum / period));
 }
+
 double iSma(double& array[], int period, int pos) {
   double sum = 0.0;
   for (int i = 0; i < period && pos < ArrayRange(array, 0); i++, pos++) sum += array[pos];
   return (sum / period);
 }
-
-//
-//
-//
-//
-//
 
 double iTema(double price, int pos, int sbuf = 0) {
   int i = Bars - pos - 1;
