@@ -155,7 +155,7 @@ class Indi_SVE_Bollinger_Bands : public Indicator {
         _entry.values[_mode] = GetValue(_mode, _shift);
       }
       _entry.SetFlag(INDI_ENTRY_FLAG_IS_VALID,
-                     _entry.GetMin<double>() > 0 && _entry.values[(int)SVE_BAND_UPPER].IsGt(SVE_BAND_LOWER));
+                     _entry.GetMin<double>() > 0 && _entry.values[(int)SVE_BAND_UPPER].IsGt<double>(SVE_BAND_LOWER));
       if (_entry.IsValid()) {
         idata.Add(_entry, _bar_time);
       }
