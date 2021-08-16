@@ -8,5 +8,5 @@
 
 // Load external resources.
 #ifdef __resource__
-#resource "\\Indicators\\Indi_SVE_Bollinger_Bands.ex4"
+#resource "Indicators\\SVE_Bollinger_Bands.ex4"
 #endif

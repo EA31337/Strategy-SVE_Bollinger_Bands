@@ -30,6 +30,9 @@ INPUT double Indi_SVE_Bollinger_Band_BBDnDeviations = 1.6;  // BB Down Deviation
 INPUT int Indi_SVE_Bollinger_Band_DeviationsPeriod = 63;    // Deviations Period
 INPUT int Indi_SVE_Bollinger_Band_Shift = 0;                // Indicator Shift
 
+// Includes indicator file.
+#include "Indi_SVE_Bollinger_Bands.mqh"
+
 // Structs.
 
 // Defines struct with default user strategy values.

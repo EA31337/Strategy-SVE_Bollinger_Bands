@@ -19,6 +19,10 @@
  *
  */
 
+// Prevents processing the same indicator file twice.
+#ifndef INDI_SVE_BOLLINGER_BANDS_MQH
+#define INDI_SVE_BOLLINGER_BANDS_MQH
+
 // Indicator line identifiers used in the indicator.
 enum ENUM_SVE_BAND_LINE {
   SVE_BAND_MAIN = 0,   // Main line.
@@ -47,9 +51,9 @@ struct Indi_SVE_Bollinger_Bands_Params : public IndicatorParams {
         DeviationsPeriod(_deviations_period) {
     max_modes = FINAL_SVE_BAND_LINE_ENTRY;
 #ifdef __resource__
-    custom_indi_name = "::Indicators\\Indi_SVE_Bollinger_Bands";
+    custom_indi_name = "::Indicators\\SVE_Bollinger_Bands";
 #else
-    custom_indi_name = "Indi_SVE_Bollinger_Bands";
+    custom_indi_name = "SVE_Bollinger_Bands";
 #endif
     SetDataSourceType(IDATA_ICUSTOM);
     SetDataValueType(TYPE_DOUBLE);
@@ -93,11 +97,6 @@ class Indi_SVE_Bollinger_Bands : public Indicator {
         Indicator(NULL, _tf) {
     params = _p;
   }
-
-  /**
-   * Gets indicator's params.
-   */
-  // Indi_SVE_Bollinger_Bands_Params GetIndiParams() const { return params; }
 
   /**
    * Returns the indicator's value.
@@ -145,3 +144,5 @@ class Indi_SVE_Bollinger_Bands : public Indicator {
     return _entry;
   }
 };
+
+#endif  // INDI_SVE_BOLLINGER_BANDS_MQH
