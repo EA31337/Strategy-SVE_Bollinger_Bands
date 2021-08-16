@@ -30,9 +30,6 @@ INPUT double Indi_SVE_Bollinger_Band_BBDnDeviations = 1.6;  // BB Down Deviation
 INPUT int Indi_SVE_Bollinger_Band_DeviationsPeriod = 63;    // Deviations Period
 INPUT int Indi_SVE_Bollinger_Band_Shift = 0;                // Indicator Shift
 
-// Includes strategy's indicator files.
-#include "Indi_SVE_Bollinger_Bands.mqh"
-
 // Structs.
 
 // Defines struct with default user strategy values.
@@ -114,8 +111,7 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
    */
   bool SignalOpen(ENUM_ORDER_TYPE _cmd, int _method = 0, float _level = 0.0f, int _shift = 0) {
     Indicator *_indi = GetIndicator();
-    bool _result =
-        _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) && _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 2);
+    bool _result = _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID);
     if (!_result) {
       // Returns false when indicator data is not valid.
       return false;
@@ -123,25 +119,25 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
     double level = _level * Chart().GetPipSize();
     switch (_cmd) {
       case ORDER_TYPE_BUY:
-        _result = _indi[_shift][0] < _indi[_shift][2];
+        _result = _indi[CURR][(int)SVE_BAND_MAIN] < _indi[CURR][(int)SVE_BAND_LOWER];
         if (_method != 0) {
-          if (METHOD(_method, 0)) _result &= fmin(Close[_shift + 1], Close[_shift + 2]) < _indi[_shift][2];
-          if (METHOD(_method, 1)) _result &= (_indi[_shift][2] > _indi[_shift + 2][2]);
-          if (METHOD(_method, 2)) _result &= (_indi[_shift][0] > _indi[_shift + 2][0]);
-          if (METHOD(_method, 3)) _result &= (_indi[_shift][1] > _indi[_shift + 2][1]);
-          if (METHOD(_method, 4)) _result &= Open[_shift] < _indi[_shift][0];
-          if (METHOD(_method, 5)) _result &= fmin(Close[_shift + 1], Close[_shift + 2]) > _indi[_shift][0];
+          if (METHOD(_method, 0)) _result &= fmin(Close[PREV], Close[PPREV]) < _indi[CURR][(int)SVE_BAND_LOWER];
+          if (METHOD(_method, 1)) _result &= (_indi[CURR][(int)SVE_BAND_LOWER] > _indi[PPREV][(int)SVE_BAND_LOWER]);
+          if (METHOD(_method, 2)) _result &= (_indi[CURR][(int)SVE_BAND_MAIN] > _indi[PPREV][(int)SVE_BAND_MAIN]);
+          if (METHOD(_method, 3)) _result &= (_indi[CURR][(int)SVE_BAND_UPPER] > _indi[PPREV][(int)SVE_BAND_UPPER]);
+          if (METHOD(_method, 4)) _result &= Open[CURR] < _indi[CURR][(int)SVE_BAND_MAIN];
+          if (METHOD(_method, 5)) _result &= fmin(Close[PREV], Close[PPREV]) > _indi[CURR][(int)SVE_BAND_MAIN];
         }
         break;
       case ORDER_TYPE_SELL:
-        _result = _indi[_shift][0] > _indi[_shift][1];
+        _result = _indi[CURR][(int)SVE_BAND_MAIN] > _indi[CURR][(int)SVE_BAND_UPPER];
         if (_method != 0) {
-          if (METHOD(_method, 0)) _result &= fmin(Close[_shift + 1], Close[_shift + 2]) > _indi[_shift][1];
-          if (METHOD(_method, 1)) _result &= (_indi[_shift][2] < _indi[_shift + 2][2]);
-          if (METHOD(_method, 2)) _result &= (_indi[_shift][0] < _indi[_shift + 2][0]);
-          if (METHOD(_method, 3)) _result &= (_indi[_shift][1] < _indi[_shift + 2][1]);
-          if (METHOD(_method, 4)) _result &= Open[_shift] > _indi[_shift][0];
-          if (METHOD(_method, 5)) _result &= fmin(Close[_shift + 1], Close[_shift + 2]) < _indi[_shift][0];
+          if (METHOD(_method, 0)) _result &= fmin(Close[PREV], Close[PPREV]) > _indi[CURR][(int)SVE_BAND_UPPER];
+          if (METHOD(_method, 1)) _result &= (_indi[CURR][(int)SVE_BAND_LOWER] < _indi[PPREV][(int)SVE_BAND_LOWER]);
+          if (METHOD(_method, 2)) _result &= (_indi[CURR][(int)SVE_BAND_MAIN] < _indi[PPREV][(int)SVE_BAND_MAIN]);
+          if (METHOD(_method, 3)) _result &= (_indi[CURR][(int)SVE_BAND_UPPER] < _indi[PPREV][(int)SVE_BAND_UPPER]);
+          if (METHOD(_method, 4)) _result &= Open[CURR] > _indi[CURR][(int)SVE_BAND_MAIN];
+          if (METHOD(_method, 5)) _result &= fmin(Close[PREV], Close[PPREV]) < _indi[CURR][(int)SVE_BAND_MAIN];
         }
         break;
     }

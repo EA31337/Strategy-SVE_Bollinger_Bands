@@ -38,9 +38,9 @@ void OnInit() {
   PlotIndexSetInteger(0, PLOT_DRAW_BEGIN, fmin(SvePeriod, TEMAPeriod));
   PlotIndexSetInteger(1, PLOT_DRAW_BEGIN, fmin(SvePeriod, TEMAPeriod));
   PlotIndexSetInteger(2, PLOT_DRAW_BEGIN, fmin(SvePeriod, TEMAPeriod));
-  PlotIndexSetString(0, PLOT_LABEL, "SVEBB Middle");
-  PlotIndexSetString(1, PLOT_LABEL, "SVEBB Upper");
-  PlotIndexSetString(2, PLOT_LABEL, "SVEBB Lower");
+  PlotIndexSetString(0, PLOT_LABEL,"SVEBB Middle");
+  PlotIndexSetString(1, PLOT_LABEL,"SVEBB Upper");
+  PlotIndexSetString(2, PLOT_LABEL,"SVEBB Lower");
   SetIndexStyle(0, DRAW_HISTOGRAM, STYLE_SOLID, 1);
   SetIndexStyle(1, DRAW_HISTOGRAM, STYLE_DOT, 1);
   SetIndexStyle(2, DRAW_HISTOGRAM, STYLE_DOT, 1);
