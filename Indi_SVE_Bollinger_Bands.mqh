@@ -19,15 +19,6 @@
  *
  */
 
-// User input params.
-INPUT_GROUP("SVE Bollinger Bands indicator params");
-INPUT int Indi_SVE_Bollinger_Band_TEMAPeriod = 8;           // TEMA Period
-INPUT int Indi_SVE_Bollinger_Band_SvePeriod = 18;           // SVE Period
-INPUT double Indi_SVE_Bollinger_Band_BBUpDeviations = 1.6;  // BB Up Deviation
-INPUT double Indi_SVE_Bollinger_Band_BBDnDeviations = 1.6;  // BB Down Deviation
-INPUT int Indi_SVE_Bollinger_Band_DeviationsPeriod = 63;    // Deviations Period
-INPUT int Indi_SVE_Bollinger_Band_Shift = 0;                // Indicator Shift
-
 // Structs.
 
 // Defines struct to store indicator parameter values.
@@ -72,15 +63,6 @@ struct Indi_SVE_Bollinger_Bands_Params : public IndicatorParams {
   void SetBBDnDeviations(double _value) { BBDnDeviations = _value; }
   void SetDeviationsPeriod(int _value) { DeviationsPeriod = _value; }
 };
-
-// Defines struct with default user indicator values.
-struct Indi_SVE_Bollinger_Bands_Params_Defaults : Indi_SVE_Bollinger_Bands_Params {
-  Indi_SVE_Bollinger_Bands_Params_Defaults()
-      : Indi_SVE_Bollinger_Bands_Params(::Indi_SVE_Bollinger_Band_TEMAPeriod, ::Indi_SVE_Bollinger_Band_SvePeriod,
-                                        ::Indi_SVE_Bollinger_Band_BBUpDeviations,
-                                        ::Indi_SVE_Bollinger_Band_BBDnDeviations,
-                                        ::Indi_SVE_Bollinger_Band_DeviationsPeriod, ::Indi_SVE_Bollinger_Band_Shift) {}
-} indi_svebbands_defaults;
 
 /**
  * Implements indicator class.
