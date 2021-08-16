@@ -102,8 +102,8 @@ int start() {
   limit = MathMin(Bars - counted_bars, Bars - 1);
   if (ArrayRange(tBuffer, 0) != Bars) ArrayResize(tBuffer, Bars, Bars - Bars % 4096 + 4096);
 
-  // We don't want to process more that 1000 historic bars.
-  limit = fmin(limit, 1000);
+  // We don't want to process more that 100 historic bars at a start.
+  limit = fmin(limit, 100);
 
   for (i = limit, r = Bars - i - 1; i >= 0; i--, r++) {
     if (i == (Bars - 1)) {
