@@ -51,27 +51,14 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
   }
 } stg_svebbands_defaults;
 
-// Defines struct to store indicator and strategy: strategy params.
-struct Stg_SVE_Bollinger_Bands_Params {
-  Indi_SVE_Bollinger_Bands_Params iparams;
-  StgParams sparams;
-
-  // Struct constructors.
-  Stg_SVE_Bollinger_Bands_Params(Indi_SVE_Bollinger_Bands_Params &_iparams, StgParams &_sparams)
-      : iparams(indi_svebbands_defaults, _iparams.tf.GetTf()), sparams(stg_svebbands_defaults) {
-    iparams = _iparams;
-    sparams = _sparams;
-  }
-};
-
 // Defines struct with default user indicator values.
-struct Indi_SVE_Bollinger_Bands_Params_Defaults : Indi_SVE_Bollinger_Bands_Params {
-  Indi_SVE_Bollinger_Bands_Params_Defaults()
+struct Stg_SVEBB_Indi_SVEBB_Params_Defaults : Indi_SVE_Bollinger_Bands_Params {
+  Stg_SVEBB_Indi_SVEBB_Params_Defaults()
       : Indi_SVE_Bollinger_Bands_Params(::Indi_SVE_Bollinger_Band_TEMAPeriod, ::Indi_SVE_Bollinger_Band_SvePeriod,
                                         ::Indi_SVE_Bollinger_Band_BBUpDeviations,
                                         ::Indi_SVE_Bollinger_Band_BBDnDeviations,
                                         ::Indi_SVE_Bollinger_Band_DeviationsPeriod, ::Indi_SVE_Bollinger_Band_Shift) {}
-} indi_svebbands_defaults;
+} stg_svebb_indi_svebb_defaults;
 
 #ifdef __config__
 // Loads pair specific param values.
@@ -91,7 +78,7 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
   static Stg_SVE_Bollinger_Bands *Init(ENUM_TIMEFRAMES _tf = NULL, long _magic_no = NULL,
                                        ENUM_LOG_LEVEL _log_level = V_INFO) {
     // Initialize strategy initial values.
-    Indi_SVE_Bollinger_Bands_Params _indi_params(indi_svebbands_defaults, _tf);
+    Indi_SVE_Bollinger_Bands_Params _indi_params(stg_svebb_indi_svebb_defaults, _tf);
     StgParams _stg_params(stg_svebbands_defaults);
 #ifdef __config__
     SetParamsByTf<Indi_SVE_Bollinger_Bands_Params>(_indi_params, _tf, indi_svebbands_m1, indi_svebbands_m5,
