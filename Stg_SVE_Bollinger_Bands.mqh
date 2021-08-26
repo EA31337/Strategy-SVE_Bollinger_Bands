@@ -8,7 +8,7 @@ INPUT_GROUP("SVE Bollinger Bands strategy: strategy params");
 INPUT float SVE_Bollinger_Bands_LotSize = 0;                // Lot size
 INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 0;         // Signal open method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filter method
-INPUT int SVE_Bollinger_Bands_SignalOpenFilterTime = 8;     // Signal open filter time
+INPUT int SVE_Bollinger_Bands_SignalOpenFilterTime = 9;     // Signal open filter time
 INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 0;        // Signal close method
