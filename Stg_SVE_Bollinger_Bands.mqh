@@ -44,6 +44,7 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
                   ::SVE_Bollinger_Bands_SignalCloseLevel, ::SVE_Bollinger_Bands_PriceStopMethod,
                   ::SVE_Bollinger_Bands_PriceStopLevel, ::SVE_Bollinger_Bands_TickFilterMethod,
                   ::SVE_Bollinger_Bands_MaxSpread, ::SVE_Bollinger_Bands_Shift) {
+    Set(STRAT_PARAM_LS, SVE_Bollinger_Bands_LotSize);
     Set(STRAT_PARAM_OCL, SVE_Bollinger_Bands_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, SVE_Bollinger_Bands_OrderCloseProfit);
     Set(STRAT_PARAM_OCT, SVE_Bollinger_Bands_OrderCloseTime);
