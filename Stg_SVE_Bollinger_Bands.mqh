@@ -91,7 +91,7 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
     _stg_params.SetIndicator(new Indi_SVE_Bollinger_Bands(_indi_params));
     // Initialize Strategy instance.
     ChartParams _cparams(_tf, _Symbol);
-    TradeParams _tparams(_magic_no, _log_level);
+    TradeParams _tparams;
     Strategy *_strat = new Stg_SVE_Bollinger_Bands(_stg_params, _tparams, _cparams, "SVE BB");
     return _strat;
   }
