@@ -50,7 +50,7 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
     Set(STRAT_PARAM_OCT, SVE_Bollinger_Bands_OrderCloseTime);
     Set(STRAT_PARAM_SOFT, SVE_Bollinger_Bands_SignalOpenFilterTime);
   }
-} stg_svebbands_defaults;
+};
 
 // Defines struct with default user indicator values.
 struct Stg_SVEBB_Indi_SVEBB_Params_Defaults : Indi_SVE_Bollinger_Bands_Params {
@@ -80,6 +80,7 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
                                        ENUM_LOG_LEVEL _log_level = V_INFO) {
     // Initialize strategy initial values.
     Indi_SVE_Bollinger_Bands_Params _indi_params(stg_svebb_indi_svebb_defaults, _tf);
+    Stg_SVE_Bollinger_Bands_Params_Defaults stg_svebbands_defaults;
     StgParams _stg_params(stg_svebbands_defaults);
 #ifdef __config__
     SetParamsByTf<Indi_SVE_Bollinger_Bands_Params>(_indi_params, _tf, indi_svebbands_m1, indi_svebbands_m5,
