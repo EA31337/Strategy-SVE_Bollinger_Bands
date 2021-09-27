@@ -90,11 +90,11 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
                              stg_svebbands_h1, stg_svebbands_h4, stg_svebbands_h4);
 #endif
     // Initialize indicator.
-    _stg_params.SetIndicator(new Indi_SVE_Bollinger_Bands(_indi_params));
     // Initialize Strategy instance.
     ChartParams _cparams(_tf, _Symbol);
     TradeParams _tparams;
     Strategy *_strat = new Stg_SVE_Bollinger_Bands(_stg_params, _tparams, _cparams, "SVE BB");
+    _strat.SetIndicator(new Indi_SVE_Bollinger_Bands(_indi_params));
     return _strat;
   }
 
