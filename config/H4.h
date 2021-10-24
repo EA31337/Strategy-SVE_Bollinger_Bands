@@ -5,10 +5,8 @@
  */
 
 // Defines indicator's parameter values for the given pair symbol and timeframe.
-struct Indi_SVE_Bollinger_Bands_Params_H4 : Indi_SVE_Bollinger_Bands_Params {
-  Indi_SVE_Bollinger_Bands_Params_H4() : Indi_SVE_Bollinger_Bands_Params(stg_svebb_indi_svebb_defaults, PERIOD_H4) {
-    shift = 0;
-  }
+struct IndiSVEBBParams_H4 : IndiSVEBBParams {
+  IndiSVEBBParams_H4() : IndiSVEBBParams(stg_svebb_indi_svebb_defaults, PERIOD_H4) { shift = 0; }
 } indi_svebbands_h4;
 
 // Defines strategy's parameter values for the given pair symbol and timeframe.

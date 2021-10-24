@@ -53,12 +53,11 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
 };
 
 // Defines struct with default user indicator values.
-struct Stg_SVEBB_Indi_SVEBB_Params_Defaults : Indi_SVE_Bollinger_Bands_Params {
+struct Stg_SVEBB_Indi_SVEBB_Params_Defaults : IndiSVEBBParams {
   Stg_SVEBB_Indi_SVEBB_Params_Defaults()
-      : Indi_SVE_Bollinger_Bands_Params(::Indi_SVE_Bollinger_Band_TEMAPeriod, ::Indi_SVE_Bollinger_Band_SvePeriod,
-                                        ::Indi_SVE_Bollinger_Band_BBUpDeviations,
-                                        ::Indi_SVE_Bollinger_Band_BBDnDeviations,
-                                        ::Indi_SVE_Bollinger_Band_DeviationsPeriod, ::Indi_SVE_Bollinger_Band_Shift) {}
+      : IndiSVEBBParams(::Indi_SVE_Bollinger_Band_TEMAPeriod, ::Indi_SVE_Bollinger_Band_SvePeriod,
+                        ::Indi_SVE_Bollinger_Band_BBUpDeviations, ::Indi_SVE_Bollinger_Band_BBDnDeviations,
+                        ::Indi_SVE_Bollinger_Band_DeviationsPeriod, ::Indi_SVE_Bollinger_Band_Shift) {}
 } stg_svebb_indi_svebb_defaults;
 
 #ifdef __config__
@@ -79,13 +78,12 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
   static Stg_SVE_Bollinger_Bands *Init(ENUM_TIMEFRAMES _tf = NULL, long _magic_no = NULL,
                                        ENUM_LOG_LEVEL _log_level = V_INFO) {
     // Initialize strategy initial values.
-    Indi_SVE_Bollinger_Bands_Params _indi_params(stg_svebb_indi_svebb_defaults, _tf);
+    IndiSVEBBParams _indi_params(stg_svebb_indi_svebb_defaults, _tf);
     Stg_SVE_Bollinger_Bands_Params_Defaults stg_svebbands_defaults;
     StgParams _stg_params(stg_svebbands_defaults);
 #ifdef __config__
-    SetParamsByTf<Indi_SVE_Bollinger_Bands_Params>(_indi_params, _tf, indi_svebbands_m1, indi_svebbands_m5,
-                                                   indi_svebbands_m15, indi_svebbands_m30, indi_svebbands_h1,
-                                                   indi_svebbands_h4, indi_svebbands_h4);
+    SetParamsByTf<IndiSVEBBParams>(_indi_params, _tf, indi_svebbands_m1, indi_svebbands_m5, indi_svebbands_m15,
+                                   indi_svebbands_m30, indi_svebbands_h1, indi_svebbands_h4, indi_svebbands_h4);
     SetParamsByTf<StgParams>(_stg_params, _tf, stg_svebbands_m1, stg_svebbands_m5, stg_svebbands_m15, stg_svebbands_m30,
                              stg_svebbands_h1, stg_svebbands_h4, stg_svebbands_h4);
 #endif
