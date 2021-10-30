@@ -52,14 +52,6 @@ struct Stg_SVE_Bollinger_Bands_Params_Defaults : StgParams {
   }
 };
 
-// Defines struct with default user indicator values.
-struct Stg_SVEBB_Indi_SVEBB_Params_Defaults : IndiSVEBBParams {
-  Stg_SVEBB_Indi_SVEBB_Params_Defaults()
-      : IndiSVEBBParams(::Indi_SVE_Bollinger_Band_TEMAPeriod, ::Indi_SVE_Bollinger_Band_SvePeriod,
-                        ::Indi_SVE_Bollinger_Band_BBUpDeviations, ::Indi_SVE_Bollinger_Band_BBDnDeviations,
-                        ::Indi_SVE_Bollinger_Band_DeviationsPeriod, ::Indi_SVE_Bollinger_Band_Shift) {}
-} stg_svebb_indi_svebb_defaults;
-
 #ifdef __config__
 // Loads pair specific param values.
 #include "config/H1.h"
@@ -96,7 +88,10 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
    * Event on strategy's init.
    */
   void OnInit() {
-    IndiSVEBBParams _indi_params(stg_svebb_indi_svebb_defaults, Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
+    IndiSVEBBParams _indi_params(::Indi_SVE_Bollinger_Band_TEMAPeriod, ::Indi_SVE_Bollinger_Band_SvePeriod,
+                                 ::Indi_SVE_Bollinger_Band_BBUpDeviations, ::Indi_SVE_Bollinger_Band_BBDnDeviations,
+                                 ::Indi_SVE_Bollinger_Band_DeviationsPeriod, ::Indi_SVE_Bollinger_Band_Shift);
+    _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
     SetIndicator(new Indi_SVE_Bollinger_Bands(_indi_params));
   }
 
