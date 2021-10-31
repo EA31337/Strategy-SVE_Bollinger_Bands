@@ -35,7 +35,7 @@ jobs:
           repository: EA31337/EA31337-classes
       - uses: actions/checkout@v2
         with:
-          path: indicators-other/Prices/Include/EA31337-classes
+          path: indicators-other/Oscillator/Include/EA31337-classes
           ref: dev
           repository: EA31337/EA31337-classes
       - name: Enables input mode
@@ -74,7 +74,7 @@ jobs:
     strategy:
       matrix:
         file:
-          - indicators-other/Prices/SVE_Bollinger_Bands
+          - indicators-other/Oscillator/SVE_Bollinger_Bands
     steps:
       - uses: actions/checkout@v2
         with:
