@@ -9,11 +9,11 @@ INPUT float SVE_Bollinger_Bands_LotSize = 0;                // Lot size
 INPUT int SVE_Bollinger_Bands_SignalOpenMethod = 0;         // Signal open method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterMethod = 32;  // Signal open filter method
 INPUT int SVE_Bollinger_Bands_SignalOpenFilterTime = 3;     // Signal open filter time
-INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 0.0f;     // Signal open level
+INPUT float SVE_Bollinger_Bands_SignalOpenLevel = 1.0f;     // Signal open level
 INPUT int SVE_Bollinger_Bands_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int SVE_Bollinger_Bands_SignalCloseMethod = 0;        // Signal close method
 INPUT int SVE_Bollinger_Bands_SignalCloseFilter = 32;       // Signal close filter (-127-127)
-INPUT float SVE_Bollinger_Bands_SignalCloseLevel = 0.0f;    // Signal close level
+INPUT float SVE_Bollinger_Bands_SignalCloseLevel = 1.0f;    // Signal close level
 INPUT int SVE_Bollinger_Bands_PriceStopMethod = 1;          // Price stop method (0-127)
 INPUT float SVE_Bollinger_Bands_PriceStopLevel = 2;         // Price stop level
 INPUT int SVE_Bollinger_Bands_TickFilterMethod = 32;        // Tick filter method
@@ -109,36 +109,14 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
     double level = _level * Chart().GetPipSize();
     switch (_cmd) {
       case ORDER_TYPE_BUY:
-        _result = _indi[_ishift][(int)SVE_BAND_MAIN] < _indi[_ishift][(int)SVE_BAND_LOWER];
-        if (_method != 0) {
-          if (METHOD(_method, 0))
-            _result &= fmin(Close[_ishift + 1], Close[_ishift + 2]) < _indi[_ishift][(int)SVE_BAND_LOWER];
-          if (METHOD(_method, 1))
-            _result &= (_indi[_ishift][(int)SVE_BAND_LOWER] > _indi[_ishift + 2][(int)SVE_BAND_LOWER]);
-          if (METHOD(_method, 2))
-            _result &= (_indi[_ishift][(int)SVE_BAND_MAIN] > _indi[_ishift + 2][(int)SVE_BAND_MAIN]);
-          if (METHOD(_method, 3))
-            _result &= (_indi[_ishift][(int)SVE_BAND_UPPER] > _indi[_ishift + 2][(int)SVE_BAND_UPPER]);
-          if (METHOD(_method, 4)) _result &= Open[_ishift] < _indi[_ishift][(int)SVE_BAND_MAIN];
-          if (METHOD(_method, 5))
-            _result &= fmin(Close[_ishift + 1], Close[_ishift + 2]) > _indi[_ishift][(int)SVE_BAND_MAIN];
-        }
+        _result &= _indi[_ishift][(int)SVE_BAND_MAIN] < _indi[_ishift][(int)SVE_BAND_LOWER];
+        _result &= _indi.IsIncreasing(1, SVE_BAND_MAIN, _ishift);
+        _result &= _indi.IsIncByPct(_level, SVE_BAND_MAIN, _ishift, 1);
         break;
       case ORDER_TYPE_SELL:
-        _result = _indi[_ishift][(int)SVE_BAND_MAIN] > _indi[_ishift][(int)SVE_BAND_UPPER];
-        if (_method != 0) {
-          if (METHOD(_method, 0))
-            _result &= fmin(Close[_ishift + 1], Close[_ishift + 2]) > _indi[_ishift][(int)SVE_BAND_UPPER];
-          if (METHOD(_method, 1))
-            _result &= (_indi[_ishift][(int)SVE_BAND_LOWER] < _indi[_ishift + 2][(int)SVE_BAND_LOWER]);
-          if (METHOD(_method, 2))
-            _result &= (_indi[_ishift][(int)SVE_BAND_MAIN] < _indi[_ishift + 2][(int)SVE_BAND_MAIN]);
-          if (METHOD(_method, 3))
-            _result &= (_indi[_ishift][(int)SVE_BAND_UPPER] < _indi[_ishift + 2][(int)SVE_BAND_UPPER]);
-          if (METHOD(_method, 4)) _result &= Open[_ishift] > _indi[_ishift][(int)SVE_BAND_MAIN];
-          if (METHOD(_method, 5))
-            _result &= fmin(Close[_ishift + 1], Close[_ishift + 2]) < _indi[_ishift][(int)SVE_BAND_MAIN];
-        }
+        _result &= _indi[_ishift][(int)SVE_BAND_MAIN] > _indi[_ishift][(int)SVE_BAND_UPPER];
+        _result &= _indi.IsDecreasing(1, SVE_BAND_MAIN, _ishift);
+        _result &= _indi.IsDecByPct(_level, SVE_BAND_MAIN, _ishift, 1);
         break;
     }
     return _result;
