@@ -67,8 +67,7 @@ class Stg_SVE_Bollinger_Bands : public Strategy {
   Stg_SVE_Bollinger_Bands(StgParams &_sparams, TradeParams &_tparams, ChartParams &_cparams, string _name = "")
       : Strategy(_sparams, _tparams, _cparams, _name) {}
 
-  static Stg_SVE_Bollinger_Bands *Init(ENUM_TIMEFRAMES _tf = NULL, long _magic_no = NULL,
-                                       ENUM_LOG_LEVEL _log_level = V_INFO) {
+  static Stg_SVE_Bollinger_Bands *Init(ENUM_TIMEFRAMES _tf = NULL, EA* _ea = NULL) {
     // Initialize strategy initial values.
     Stg_SVE_Bollinger_Bands_Params_Defaults stg_svebbands_defaults;
     StgParams _stg_params(stg_svebbands_defaults);
