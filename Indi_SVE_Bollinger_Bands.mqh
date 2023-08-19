@@ -24,7 +24,9 @@
 #define INDI_SVE_BOLLINGER_BANDS_MQH
 
 // Defines.
-#define INDI_SVEBB_PATH "indicators-other\\Oscillator"
+#ifndef INDI_SVEBB_PATH
+#define INDI_SVEBB_PATH "indicators-other\\Oscillator\\SVE_Bollinger_Bands"
+#endif
 
 // Indicator line identifiers used in the indicator.
 enum ENUM_SVE_BAND_LINE {
@@ -54,7 +56,7 @@ struct IndiSVEBBParams : public IndicatorParams {
         DeviationsPeriod(_deviations_period),
         IndicatorParams(INDI_SVE_BB, FINAL_SVE_BAND_LINE_ENTRY, TYPE_DOUBLE) {
 #ifdef __resource__
-    custom_indi_name = "::" + INDI_SVEBB_PATH + "\\SVE_Bollinger_Bands";
+    custom_indi_name = "::" + INDI_SVEBB_PATH;
 #else
     custom_indi_name = "SVE_Bollinger_Bands";
 #endif
