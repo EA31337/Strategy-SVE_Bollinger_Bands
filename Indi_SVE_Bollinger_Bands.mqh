@@ -25,7 +25,7 @@
 
 // Defines.
 #ifndef INDI_SVEBB_PATH
-#define INDI_SVEBB_PATH "indicators-other\\Oscillator\\SVE_Bollinger_Bands"
+#define INDI_SVEBB_PATH "indicators-other\\Oscillator"
 #endif
 
 // Indicator line identifiers used in the indicator.
