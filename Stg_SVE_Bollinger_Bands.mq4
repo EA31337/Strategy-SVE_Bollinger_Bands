@@ -8,5 +8,5 @@
 
 // Load external resources.
 #ifdef __resource__
-#resource INDI_SVEBB_PATH + "\\SVE_Bollinger_Bands.ex4"
+#resource INDI_SVEBB_PATH + "\\SVE_Bollinger_Bands" + MQL_EXT
 #endif

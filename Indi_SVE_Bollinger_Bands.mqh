@@ -25,7 +25,7 @@
 
 // Defines.
 #ifndef INDI_SVEBB_PATH
-#define INDI_SVEBB_PATH "indicators-other\\Oscillator"
+#define INDI_SVEBB_PATH "indicators-other\\Oscillators\\Multi"
 #endif
 
 // Indicator line identifiers used in the indicator.
